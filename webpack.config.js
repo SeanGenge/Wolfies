@@ -7,6 +7,7 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
     filename: "bundle.[contenthash].js",
     clean: true,
+    publicPath: '/',
   },
   devtool: "source-map",
   module: {
@@ -29,4 +30,7 @@ module.exports = {
       template: "src/index.html",
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
