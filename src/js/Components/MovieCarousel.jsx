@@ -2,29 +2,51 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import "swiper/css";
+import MovieCard from "../Components/MovieCard.jsx";
 
+// A movie carousel that displays a list of movies
 class MovieCarousel extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    
 	render() {
+        const movieSlides = [];
+        
+        this.props.movies.forEach((movie, id) => {
+            movieSlides.push(<SwiperSlide key={movie.id} className=" d-flex justify-content-center"><MovieCard type={movie.media_type} data={movie} /></SwiperSlide>);
+        });
+        
 		return (
             <>
+                <h1 className="text-center">{this.props.heading}</h1>
                 <Swiper
-                    slidesPerView={3}
-                    spaceBetween={60}
-                    slidesPerGroup={3}
-                    loop={true}
                     pagination={{
                         clickable: true,
                     }}
                     navigation={true}
-                    modules={[Pagination, Navigation]}>
-                        <SwiperSlide>Slide 1</SwiperSlide>
-                        <SwiperSlide>Slide 2</SwiperSlide>
-                        <SwiperSlide>Slide 3</SwiperSlide>
-                        <SwiperSlide>Slide 4</SwiperSlide>
-                        <SwiperSlide>Slide 5</SwiperSlide>
-                        <SwiperSlide>Slide 6</SwiperSlide>
-                        <SwiperSlide>Slide 7</SwiperSlide>
-                        <SwiperSlide>Slide 8</SwiperSlide>
+                    modules={[Pagination, Navigation]}
+                    breakpoints={{
+                        280: {
+                            slidesPerView: 1
+                        },
+                        540: {
+                            slidesPerView: 2
+                        },
+                        768: {
+                            slidesPerView: 3
+                        },
+                        1280: {
+                            slidesPerView: 4
+                        },
+                        1600: {
+                            slidesPerView: 5
+                        },
+                        2100: {
+                            slidesPerView: 7
+                        }
+                    }}>
+                        {movieSlides}
                 </Swiper>
             </>
 		  );

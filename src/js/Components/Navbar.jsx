@@ -7,7 +7,6 @@ class Navbar extends React.Component {
 			<nav className="navbar bg-light">
 				<div className="container-fluid">
 					<Link to="/" className="navbar-brand">Wolfies</Link>
-					<Link to="/search">Wolfies</Link>
 					<form className="d-flex" role="search">
 						<input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
 					</form>
