@@ -2,6 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import "swiper/css";
+import "swiper/css/navigation";
 import MovieCard from "../Components/MovieCard.jsx";
 
 // A movie carousel that displays a list of movies
@@ -13,19 +14,19 @@ class MovieCarousel extends React.Component {
 	render() {
         const movieSlides = [];
         
+        if (!this.props.movies) return;
+        
         this.props.movies.forEach((movie, id) => {
-            movieSlides.push(<SwiperSlide key={movie.id} className=" d-flex justify-content-center"><MovieCard type={movie.media_type} data={movie} /></SwiperSlide>);
+            movieSlides.push(<SwiperSlide key={id} className=" d-flex justify-content-center"><MovieCard data={movie} /></SwiperSlide>);
         });
         
 		return (
             <>
-                <h1 className="text-center">{this.props.heading}</h1>
+                <h1 className="text-center test">{this.props.heading}</h1>
                 <Swiper
-                    pagination={{
-                        clickable: true,
-                    }}
                     navigation={true}
-                    modules={[Pagination, Navigation]}
+                    modules={[Navigation]}
+                    loop={true}
                     breakpoints={{
                         280: {
                             slidesPerView: 1

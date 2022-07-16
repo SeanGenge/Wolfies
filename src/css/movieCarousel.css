@@ -1,0 +1,16 @@
+.swiper-button-next {
+    height: 100%;
+    top: 0;
+}
+
+.swiper-button-prev {
+    height: 100%;
+    top: 0;
+}
+
+
+@media screen and (min-width: 700px) {
+    .swiper-wrapper {
+        padding: 25px;
+    }
+}
