@@ -1,13 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/LayoutPage.jsx";
-import Home from "./pages/HomePage.jsx";
-import Search from "./pages/SearchPage.jsx";
-import NoPage from "./pages/NoPage.jsx";
+import Layout from "./src/js/pages/LayoutPage.jsx";
+import Home from "./src/js/pages/HomePage.jsx";
+import Search from "./src/js/pages/SearchPage.jsx";
+import NoPage from "./src/js/pages/NoPage.jsx";
 // Import css files
-import '../css/movieCarousel.css';
-import '../css/movieCard.css';
+import './src/css/movieCarousel.css';
+import './src/css/movieCard.css';
 
 const rootContainer = document.getElementById("root");
 const root = createRoot(rootContainer);

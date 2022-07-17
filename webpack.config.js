@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: "./src/js/app.js",
+  entry: "./app.js",
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "bundle.[contenthash].js",
@@ -23,6 +23,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },

@@ -14,7 +14,7 @@ class MovieCard extends React.Component {
         // Add a bit of a delay to prevent too many requests to the server
         setTimeout(() => {
             img.src = img.src;
-        }, 2000);
+        }, 1000);
     }
     
 	render() {
