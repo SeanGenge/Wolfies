@@ -14,6 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
+        // For react
         test: /\.js|\.jsx$/,
         exclude: /node_modules/,
         use: {
@@ -21,10 +22,12 @@ module.exports = {
         },
       },
       {
+        // For css, just in case
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
       {
+        // For scss
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
       },

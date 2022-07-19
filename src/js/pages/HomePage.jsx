@@ -1,7 +1,7 @@
 import React from "react";
-import MovieCarousel from "../Components/MovieCarousel.jsx";
 import * as mav from "../variables/movie-api-vars";
 import * as search from "../utility/search";
+import MovieCarousel from "../Components/MovieCarousel.jsx";
 
 class Home extends React.Component {
     constructor(props) {
@@ -12,7 +12,8 @@ class Home extends React.Component {
            movieGenres: [],
            tvGenres: [],
            // A dictionary of genre id as key and movies as value
-           genreMovies: {}
+           genreMovies: {},
+           numGenreCarousels: 5
         };
         
         // Bind this to required functions
@@ -46,7 +47,7 @@ class Home extends React.Component {
     }
     
     async updateGenreMovies(movieGenres) {
-        let randomMovieGenres = this.getRandomMovieGenres(movieGenres, 5);
+        let randomMovieGenres = this.getRandomMovieGenres(movieGenres, this.state.numGenreCarousels);
         
         // Setup genreMovies to display the movies in a carousel
         randomMovieGenres.forEach(async rGenre => {
@@ -120,15 +121,20 @@ class Home extends React.Component {
         // Retrieve all the different genres that will be displayed
         let genreMovies = this.state.genreMovies;
         let genreMovieCarousels = [];
+        // The carousel number. Used to throttle requests for images
+        let cNum = 1;
         
         for (const [key, value] of Object.entries(genreMovies)) {
-            genreMovieCarousels.push(<MovieCarousel key={key} heading={key.split(",")[0]} movies={value} />);
+            genreMovieCarousels.push(<MovieCarousel key={key} heading={key.split(",")[0]} carouselNum={cNum} movies={value} />);
+            
+            cNum++;
         }
         
 		return (
 			<>
-                <MovieCarousel heading="Trending Daily" movies={this.state.trendingMovies} />
+                <MovieCarousel heading="Trending Daily" carouselNum={0} movies={this.state.trendingMovies} />
                 {genreMovieCarousels}
+                
             </>
 		  );
 	}

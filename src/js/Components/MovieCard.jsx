@@ -5,32 +5,49 @@ import { MOVIE_IMG_URL } from "../variables/global-vars";
 class MovieCard extends React.Component {
     constructor(props) {
         super(props);
+        
+        this.openMovieMobileMenu = this.openMovieMobileMenu.bind(this);
+        this.loadImg = this.loadImg.bind(this);
+        this.imgError = this.imgError.bind(this);
+        
+        this.imgRef = React.createRef();
     }
     
-    imgReload(img) {
-        // Prevent looping
-        img.onError = null;
+    imgError() {
+        this.loadImg();
+    }
+    
+    openMovieMobileMenu(e) {
+        // Pass the data onto the mobile menu
+        document.dispatchEvent(new CustomEvent("movieCard__clicked", { detail: this.props.movieData }));
+    }
+    
+    loadImg() {
+        let img = this.imgRef.current;
         
-        // Add a bit of a delay to prevent too many requests to the server
-        setTimeout(() => {
-            img.src = img.src;
-        }, 1000);
+        // Adds a delay when loading images. Tries to prevent 429 error (Too many requests)
+         setTimeout(() => {
+             img.src = MOVIE_IMG_URL + this.props.movieData.poster_path;
+         }, this.props.imgRequest);
+    }
+    
+    componentDidMount() {
+        this.loadImg();
     }
     
 	render() {
         // return nothing if no data has been passed
-        if (!this.props.data) return;
-        
-        let title = !this.props.data.media_type === mav.MEDIA_TYPE.movie ? this.props.data.name : this.props.data.title;
-        let imgUrl = this.props.data.poster_path ? MOVIE_IMG_URL + this.props.data.poster_path : "";
+        if (!this.props.movieData) return;
         
 		return (
-            <div className="card" style={{width: "18rem"}}>
-                <img src={imgUrl} className="card-img-top" loading="lazy" onError={(ele) => {this.imgReload(ele.target)}} />
-                <div className="card-body">
-                    <p className="card-text">{title}</p>
+            <>
+                <div className="card" style={{width: "18rem"}}>
+                    <img ref={this.imgRef} src="https://scarboroughdental.com.au/wp-content/uploads/2016/10/orionthemes-placeholder-image.png" className="card-img-top" loading="lazy" onError={(ele) => {this.imgError(ele.target)}} />
+                    <div className="d-flex card-body">
+                        <i className="ms-auto fa-solid fa-ellipsis-vertical" onClick={this.openMovieMobileMenu} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"></i>
+                    </div>
                 </div>
-            </div>
+            </>
 		  );
 	}
 };
