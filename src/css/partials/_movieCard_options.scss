@@ -1,4 +1,11 @@
 .offcanvas {
+    --bs-offcanvas-height: 60vh;
     background-color: $primary-colour;
     color: $white;
+    
+    &__extra-info {
+        font-size: 0.8rem;
+        color: $secondary-colour;
+        opacity: 0.7;
+    }
 }

@@ -23,35 +23,33 @@ class MovieCarousel extends React.Component {
         
 		return (
             <>
-                <h2 className="carousel-heading">{this.props.heading}</h2>
-                <div className="swiper-wrapper">
-                    <Swiper
-                        navigation={true}
-                        modules={[Navigation]}
-                        loop={true}
-                        breakpoints={{
-                            280: {
-                                slidesPerView: 3
-                            },
-                            540: {
-                                slidesPerView: 2
-                            },
-                            768: {
-                                slidesPerView: 3
-                            },
-                            1280: {
-                                slidesPerView: 4
-                            },
-                            1600: {
-                                slidesPerView: 5
-                            },
-                            2100: {
-                                slidesPerView: 7
-                            }
-                        }}>
-                            {movieSlides}
-                    </Swiper>
-                </div>
+                <h2 className="carousel-heading mb-1">{this.props.heading}</h2>
+                <Swiper
+                    navigation={true}
+                    modules={[Navigation]}
+                    loop={true}
+                    breakpoints={{
+                        280: {
+                            slidesPerView: 3
+                        },
+                        540: {
+                            slidesPerView: 2
+                        },
+                        768: {
+                            slidesPerView: 3
+                        },
+                        1280: {
+                            slidesPerView: 4
+                        },
+                        1600: {
+                            slidesPerView: 5
+                        },
+                        2100: {
+                            slidesPerView: 7
+                        }
+                    }}>
+                        {movieSlides}
+                </Swiper>
                 <MovieCard_Options />
             </>
 		  );

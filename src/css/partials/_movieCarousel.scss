@@ -6,12 +6,8 @@
 .carousel-heading {
     color: $white;
     text-shadow: 0 0 1px $black;
-    margin: 15px;
-}
-
-.swiper {
-    padding-bottom: 15px;
-    padding-top: 15px;
+    font-size: 1.25rem;
+    padding: 15px 0 10px 10px;
 }
 
 @media screen and (min-width: 700px) {

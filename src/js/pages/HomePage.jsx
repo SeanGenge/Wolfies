@@ -2,6 +2,7 @@ import React from "react";
 import * as mav from "../variables/movie-api-vars";
 import * as search from "../utility/search";
 import MovieCarousel from "../Components/MovieCarousel.jsx";
+import Footer from "../Components/footer.jsx";
 
 class Home extends React.Component {
     constructor(props) {
@@ -21,7 +22,6 @@ class Home extends React.Component {
         this.updateGenreMovies = this.updateGenreMovies.bind(this);
         this.getTvGenres = this.getTvGenres.bind(this);
         this.getTrendingMovies = this.getTrendingMovies.bind(this);
-        this.getMoviesByGenreIds = this.getMoviesByGenreIds.bind(this);
         this.getRandomMovieGenres = this.getRandomMovieGenres.bind(this);
         
         this.getMovieGenres();
@@ -34,7 +34,6 @@ class Home extends React.Component {
         let movieGenres = await search.getMovieGenres()
         .then(data => {
             this.updateGenreMovies(data.genres);
-            
             // Have to return data so movieGenres is not undefined
             return data.genres;
         });
@@ -52,7 +51,7 @@ class Home extends React.Component {
         // Setup genreMovies to display the movies in a carousel
         randomMovieGenres.forEach(async rGenre => {
             let movies = await search.getMoviesByGenreIds([rGenre.id]);
-            
+            console.log(movies);
             // Need to get prevState since setState is async
             this.setState(prevState => ({
                 genreMovies: {...prevState.genreMovies, [`${rGenre.name},${rGenre.id}`]: movies.results}
@@ -82,21 +81,6 @@ class Home extends React.Component {
         });
         
         return trendingMovies;
-    }
-    
-    async getMoviesByGenreIds(genreIds) {
-        // genreId: The id of the genre you want to search movies by
-        let movies = await search.getMoviesByGenreIds(genreIds);
-        let genreIdsStr = genreIds.join(",");
-        
-        this.setState(prevState => ({
-            genreMovies: {
-                // Only update the searched genre Ids
-                ...prevState.genreMovies,
-                [genreIdsStr]: movies.results
-            }
-        }));
-        ;
     }
     
     getRandomMovieGenres(_movieGenres, num) {
@@ -134,7 +118,7 @@ class Home extends React.Component {
 			<>
                 <MovieCarousel heading="Trending Daily" carouselNum={0} movies={this.state.trendingMovies} />
                 {genreMovieCarousels}
-                
+                <Footer />
             </>
 		  );
 	}

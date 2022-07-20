@@ -1,3 +1,30 @@
 body {
     background-image: linear-gradient(to top right, $black 90%, $gray);
 }
+
+a {
+    text-decoration: none;
+    color: $secondary-colour;
+}
+
+footer {
+    background-color: $primary-colour;
+    color: $white;
+    padding: 15px;
+}
+
+input {
+    background: none !important;
+    color: $white !important;
+    border: solid $primary-colour !important;
+    border-width: 0 0 2px 0 !important;
+    
+    &::placeholder {
+        color: $white !important;
+    }
+    
+    &:hover {
+        box-shadow: none !important;
+        border-bottom: 2.5px solid $secondary-colour !important;
+    }
+}

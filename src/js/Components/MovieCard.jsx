@@ -1,5 +1,4 @@
 import React from "react";
-import * as mav from "../variables/movie-api-vars";
 import { MOVIE_IMG_URL } from "../variables/global-vars";
 
 class MovieCard extends React.Component {
@@ -41,8 +40,8 @@ class MovieCard extends React.Component {
         
 		return (
             <>
-                <div className="card">
-                    <img ref={this.imgRef} src="https://scarboroughdental.com.au/wp-content/uploads/2016/10/orionthemes-placeholder-image.png" className="card-img-top" loading="lazy" onError={(ele) => {this.imgError(ele.target)}} onClick={this.openMovieMobileMenu} data-bs-toggle="offcanvas" data-bs-target="#mobile-movieInfo" />
+                <div className="card" onClick={this.openMovieMobileMenu} data-bs-toggle="offcanvas" data-bs-target="#mobile-movieInfo">
+                    <img ref={this.imgRef} src="https://scarboroughdental.com.au/wp-content/uploads/2016/10/orionthemes-placeholder-image.png" className="card-img-top" loading="lazy" onError={(ele) => {this.imgError(ele.target)}} />
                 </div>
             </>
 		  );
