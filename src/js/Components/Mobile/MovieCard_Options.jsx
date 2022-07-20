@@ -28,13 +28,13 @@ class MovieCard_Options extends React.Component {
 	render() {
 		return (
             <>
-                <div className="offcanvas offcanvas-bottom" tabIndex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                <div className="offcanvas offcanvas-bottom" data-bs-scroll="true" tabIndex="-1" id="mobile-movieInfo" aria-labelledby="offcanvasBottomLabel">
                     <div className="offcanvas-header">
-                        <h5 className="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <h5 className="offcanvas-title" id="offcanvasBottomLabel">{this.state.movie?.title ?? ''}</h5>
+                        <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div className="offcanvas-body small">
-                        {this.state.movie?.title ?? ''}
+                        
                     </div>
                 </div>
             </>

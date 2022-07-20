@@ -1,0 +1,15 @@
+.card {
+    width: 7.5rem;
+    background-color: $primary-colour;
+    border: none;
+}
+
+@media screen and (min-width: 700px) {
+    .card {
+        width: 18rem;
+    }
+//     .card:hover {
+//         transform: scale(1.1);
+//         z-index: 1;
+//     }
+}

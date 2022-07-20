@@ -1,0 +1,25 @@
+.swiper-button-next,
+.swiper-button-prev {
+    display: none;
+}
+
+.carousel-heading {
+    color: $white;
+    text-shadow: 0 0 1px $black;
+    margin: 15px;
+}
+
+.swiper {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+@media screen and (min-width: 700px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: flex;
+        height: 80%;
+        top: 10%;
+        color: $secondary-colour;
+    }
+}

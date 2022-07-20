@@ -6,8 +6,7 @@ import Home from "./src/js/pages/HomePage.jsx";
 import Search from "./src/js/pages/SearchPage.jsx";
 import NoPage from "./src/js/pages/NoPage.jsx";
 // Import css files
-import './src/css/movieCarousel.scss';
-import './src/css/movieCard.scss';
+import './src/css/main.scss';
 
 const rootContainer = document.getElementById("root");
 const root = createRoot(rootContainer);

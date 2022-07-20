@@ -41,11 +41,8 @@ class MovieCard extends React.Component {
         
 		return (
             <>
-                <div className="card" style={{width: "18rem"}}>
-                    <img ref={this.imgRef} src="https://scarboroughdental.com.au/wp-content/uploads/2016/10/orionthemes-placeholder-image.png" className="card-img-top" loading="lazy" onError={(ele) => {this.imgError(ele.target)}} />
-                    <div className="d-flex card-body">
-                        <i className="ms-auto fa-solid fa-ellipsis-vertical" onClick={this.openMovieMobileMenu} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"></i>
-                    </div>
+                <div className="card">
+                    <img ref={this.imgRef} src="https://scarboroughdental.com.au/wp-content/uploads/2016/10/orionthemes-placeholder-image.png" className="card-img-top" loading="lazy" onError={(ele) => {this.imgError(ele.target)}} onClick={this.openMovieMobileMenu} data-bs-toggle="offcanvas" data-bs-target="#mobile-movieInfo" />
                 </div>
             </>
 		  );

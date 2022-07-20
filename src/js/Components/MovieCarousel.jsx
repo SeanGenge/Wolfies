@@ -4,7 +4,7 @@ import { Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import MovieCard from "../Components/MovieCard.jsx";
-import MovieCard_Options from "./Mobile/MovieCard_Options.jsx";
+import MovieCard_Options from "./Mobile/MovieCard_options.jsx";
 
 // A movie carousel that displays a list of movies
 class MovieCarousel extends React.Component {
@@ -18,12 +18,12 @@ class MovieCarousel extends React.Component {
         if (!this.props.movies) return;
         
         this.props.movies.forEach((movie, indx) => {
-            movieSlides.push(<SwiperSlide key={indx} className=" d-flex justify-content-center"><MovieCard imgRequest={this.props.carouselNum * 500 + indx * 35} movieData={movie} /></SwiperSlide>);
+            movieSlides.push(<SwiperSlide key={indx} className=" d-flex justify-content-center"><MovieCard imgRequest={this.props.carouselNum * 550 + indx * 30} movieData={movie} /></SwiperSlide>);
         });
         
 		return (
             <>
-                <h1 className="carousel-heading text-center">{this.props.heading}</h1>
+                <h2 className="carousel-heading">{this.props.heading}</h2>
                 <div className="swiper-wrapper">
                     <Swiper
                         navigation={true}
@@ -31,7 +31,7 @@ class MovieCarousel extends React.Component {
                         loop={true}
                         breakpoints={{
                             280: {
-                                slidesPerView: 1
+                                slidesPerView: 3
                             },
                             540: {
                                 slidesPerView: 2
