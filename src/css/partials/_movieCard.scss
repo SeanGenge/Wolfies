@@ -4,12 +4,8 @@
     border: none;
 }
 
-@media screen and (min-width: 700px) {
+@include media-breakpoint-up(md) {
     .card {
         width: 18rem;
     }
-//     .card:hover {
-//         transform: scale(1.1);
-//         z-index: 1;
-//     }
 }

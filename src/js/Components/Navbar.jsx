@@ -13,7 +13,7 @@ class Navbar extends React.Component {
 	}
 	
 	changeNavbarBackground() {
-		if (window.scrollY >= 66) {
+		if (window.scrollY >= 25) {
 			this.setState({
 				navHasBackground: true
 			});

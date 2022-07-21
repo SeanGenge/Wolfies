@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import 'bootstrap';
 import Layout from "./src/js/pages/LayoutPage.jsx";
 import Home from "./src/js/pages/HomePage.jsx";
 import Search from "./src/js/pages/SearchPage.jsx";

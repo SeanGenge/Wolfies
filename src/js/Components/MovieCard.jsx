@@ -1,24 +1,25 @@
 import React from "react";
+import { Offcanvas } from "bootstrap";
 import { MOVIE_IMG_URL } from "../variables/global-vars";
 
 class MovieCard extends React.Component {
     constructor(props) {
         super(props);
         
-        this.openMovieMobileMenu = this.openMovieMobileMenu.bind(this);
+        this.openMovieMobileInfo = this.openMovieMobileInfo.bind(this);
         this.loadImg = this.loadImg.bind(this);
-        this.imgError = this.imgError.bind(this);
         
         this.imgRef = React.createRef();
     }
     
-    imgError() {
-        this.loadImg();
-    }
-    
-    openMovieMobileMenu(e) {
-        // Pass the data onto the mobile menu
-        document.dispatchEvent(new CustomEvent("movieCard__clicked", { detail: this.props.movieData }));
+    openMovieMobileInfo(e) {
+        // Displays the offCanvas if the slider has not changed
+        let offCanvas = new Offcanvas(document.getElementById("mobile-movieInfo"));
+        
+        if (!this.props.slideChanged) {
+            document.dispatchEvent(new CustomEvent("movieCard__clicked", { detail: this.props.movieData }));
+            offCanvas.show();
+        }
     }
     
     loadImg() {
@@ -26,7 +27,10 @@ class MovieCard extends React.Component {
         
         // Adds a delay when loading images. Tries to prevent 429 error (Too many requests)
          setTimeout(() => {
-             img.src = MOVIE_IMG_URL + this.props.movieData.poster_path;
+            if (this.props.movieData.poster_path != undefined) {
+                img.src = MOVIE_IMG_URL + this.props.movieData.poster_path;
+            }
+            
          }, this.props.imgRequest);
     }
     
@@ -40,8 +44,8 @@ class MovieCard extends React.Component {
         
 		return (
             <>
-                <div className="card" onClick={this.openMovieMobileMenu} data-bs-toggle="offcanvas" data-bs-target="#mobile-movieInfo">
-                    <img ref={this.imgRef} src="https://scarboroughdental.com.au/wp-content/uploads/2016/10/orionthemes-placeholder-image.png" className="card-img-top" loading="lazy" onError={(ele) => {this.imgError(ele.target)}} />
+                <div className="card" onClick={this.openMovieMobileInfo}>
+                    <img ref={this.imgRef} src="https://scarboroughdental.com.au/wp-content/uploads/2016/10/orionthemes-placeholder-image.png" className="card-img" loading="lazy" onError={this.loadImg} />
                 </div>
             </>
 		  );

@@ -51,7 +51,7 @@ class Home extends React.Component {
         // Setup genreMovies to display the movies in a carousel
         randomMovieGenres.forEach(async rGenre => {
             let movies = await search.getMoviesByGenreIds([rGenre.id]);
-            console.log(movies);
+            
             // Need to get prevState since setState is async
             this.setState(prevState => ({
                 genreMovies: {...prevState.genreMovies, [`${rGenre.name},${rGenre.id}`]: movies.results}

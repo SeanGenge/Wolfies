@@ -13,10 +13,14 @@ footer {
     padding: 15px;
 }
 
+.form-control:focus {
+    box-shadow: none;
+}
+
 input {
     background: none !important;
     color: $white !important;
-    border: solid $primary-colour !important;
+    border: solid $secondary-colour !important;
     border-width: 0 0 2px 0 !important;
     
     &::placeholder {

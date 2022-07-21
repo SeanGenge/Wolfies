@@ -10,12 +10,18 @@
     padding: 15px 0 10px 10px;
 }
 
-@media screen and (min-width: 700px) {
-    .swiper-button-next,
-    .swiper-button-prev {
-        display: flex;
-        height: 80%;
-        top: 10%;
-        color: $secondary-colour;
+@include media-breakpoint-up(lg) {
+    .carousel-heading {
+        margin-left: 2rem;
+    }
+    
+    .swiper:hover {
+        .swiper-button-next,
+        .swiper-button-prev {
+            display: flex;
+            height: 80%;
+            top: 10%;
+            color: $secondary-colour;
+        }
     }
 }

@@ -10,6 +10,24 @@ import MovieCard_Options from "./Mobile/MovieCard_options.jsx";
 class MovieCarousel extends React.Component {
     constructor(props) {
         super(props);
+        
+        this.state = {
+           slideChanged: false 
+        };
+        
+        this.sliderChange = this.sliderChange.bind(this);
+    }
+    
+    sliderChange() {
+        this.setState({
+            slideChanged: true
+        });
+        
+        setTimeout(() => {
+            this.setState({
+                slideChanged: false
+            })
+        }, 100);
     }
     
 	render() {
@@ -18,7 +36,7 @@ class MovieCarousel extends React.Component {
         if (!this.props.movies) return;
         
         this.props.movies.forEach((movie, indx) => {
-            movieSlides.push(<SwiperSlide key={indx} className=" d-flex justify-content-center"><MovieCard imgRequest={this.props.carouselNum * 550 + indx * 30} movieData={movie} /></SwiperSlide>);
+            movieSlides.push(<SwiperSlide key={indx}><MovieCard imgRequest={this.props.carouselNum * 550 + indx * 30} slideChanged={this.props.slideChanged} movieData={movie} /></SwiperSlide>);
         });
         
 		return (
@@ -27,25 +45,31 @@ class MovieCarousel extends React.Component {
                 <Swiper
                     navigation={true}
                     modules={[Navigation]}
-                    loop={true}
+                    onSlideChange={() => this.sliderChange}
                     breakpoints={{
                         280: {
-                            slidesPerView: 3
+                            slidesPerView: 3,
+                            slidesPerGroup: 3
                         },
                         540: {
-                            slidesPerView: 2
+                            slidesPerView: 3,
+                            slidesPerGroup: 3
                         },
                         768: {
-                            slidesPerView: 3
+                            slidesPerView: 3,
+                            slidesPerGroup: 3
                         },
                         1280: {
-                            slidesPerView: 4
+                            slidesPerView: 4,
+                            slidesPerGroup: 4
                         },
                         1600: {
-                            slidesPerView: 5
+                            slidesPerView: 5,
+                            slidesPerGroup: 5
                         },
                         2100: {
-                            slidesPerView: 7
+                            slidesPerView: 7,
+                            slidesPerGroup: 7
                         }
                     }}>
                         {movieSlides}
