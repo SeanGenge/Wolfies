@@ -1,5 +1,5 @@
 import React from "react";
-import { Offcanvas } from "bootstrap";
+import { Offcanvas, Modal } from "bootstrap";
 import { MOVIE_IMG_URL } from "../variables/global-vars";
 
 class MovieCard extends React.Component {
@@ -12,14 +12,23 @@ class MovieCard extends React.Component {
         this.imgRef = React.createRef();
     }
     
-    openMovieMobileInfo(e) {
+    openMovieMobileInfo() {
         // Displays the offCanvas if the slider has not changed
-        let offCanvas = new Offcanvas(document.getElementById("mobile-movieInfo"));
+        let isMobile = screen.width <= 540;
         
         if (!this.props.slideChanged) {
             document.dispatchEvent(new CustomEvent("movieCard__clicked", { detail: this.props.movieData }));
-            offCanvas.show();
+            
+            if (isMobile) {
+                let offcanvas = new Offcanvas(document.getElementById("mobile-movieInfo"));
+                offcanvas.show();
+            }
+            else {
+                let modal = new Modal(document.getElementById("movieInfo-modal"));
+                modal.show();
+            }
         }
+        
     }
     
     loadImg() {
@@ -30,7 +39,6 @@ class MovieCard extends React.Component {
             if (this.props.movieData.poster_path != undefined) {
                 img.src = MOVIE_IMG_URL + this.props.movieData.poster_path;
             }
-            
          }, this.props.imgRequest);
     }
     

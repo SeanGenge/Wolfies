@@ -1,14 +1,16 @@
 import React from "react";
 import moment from 'moment';
+import { Offcanvas } from "bootstrap";
 import { MOVIE_IMG_URL } from "../../variables/global-vars";
 
-class MovieCard_Options extends React.Component {
+class MovieCard_Offcanvas extends React.Component {
     constructor(props) {
         super(props);
         
         this.state = {
             movie: {}
         };
+        
         this.movieCard__clicked_callback = this.movieCard__clicked_callback.bind(this);
         
     }
@@ -31,8 +33,13 @@ class MovieCard_Options extends React.Component {
         return moment(date).format('DD/MM/YYYY');
     }
     
-	render() {
+    hideInfo(e) {
+        let offcanvas = new Offcanvas(e.target);
         
+        offcanvas.hide();
+    }
+    
+	render() {
         let imgSrc = "";
         
         if (this.state.movie?.backdrop_path !== undefined && this.state.movie?.backdrop_path !== null) {
@@ -41,10 +48,10 @@ class MovieCard_Options extends React.Component {
         
 		return (
             <>
-                <div className="offcanvas offcanvas-bottom" tabIndex="-1" id="mobile-movieInfo" aria-labelledby="offcanvasBottomLabel">
+                <div className="offcanvas-lg offcanvas-bottom" tabIndex="-1" id="mobile-movieInfo" aria-labelledby="offcanvasBottomLabel">
                     <div className="offcanvas-header pb-2">
                         <h5 className="offcanvas-title" id="offcanvasBottomLabel">{this.state.movie?.title ?? ''}</h5>
-                        <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" className="btn-close btn-close-white" aria-label="Close" onClick={this.hideInfo}></button>
                     </div>
                     <div className="offcanvas__extra-info ps-3 pb-2">
                         <span className="me-1">{this.convertDate(this.state.movie.release_date)}</span>
@@ -64,4 +71,4 @@ class MovieCard_Options extends React.Component {
 	}
 };
 
-export default MovieCard_Options;
+export default MovieCard_Offcanvas;

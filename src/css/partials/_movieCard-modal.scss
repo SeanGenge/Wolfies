@@ -1,0 +1,26 @@
+$modal-content-bg: red;
+
+#movieInfo-modal {
+    .modal-header {
+        background-color: $primary-colour;
+        border: none;
+        color: $white;
+    }
+    
+    .modal-body {
+        display: flex;
+        background-color: $primary-colour;
+        color: $white;
+        
+        .movie-info {
+            margin: 15px;
+            
+            .modal__extra-info {
+                font-size: 1rem;
+                color: $secondary-colour;
+                opacity: 0.8;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

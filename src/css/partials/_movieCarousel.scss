@@ -10,18 +10,30 @@
     padding: 15px 0 10px 10px;
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(xxl) {
     .carousel-heading {
-        margin-left: 2rem;
+        font-size: 24px;
+        padding-bottom: 20px;
+    }
+    
+    .swiper-container {
+        width: 97%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
     }
     
     .swiper:hover {
         .swiper-button-next,
         .swiper-button-prev {
-            display: flex;
-            height: 80%;
-            top: 10%;
+            display: flex !important;
+            height: 110%;
+            top: 0%;
             color: $secondary-colour;
+        }
+        
+        .swiper-button-disabled {
+            display: none !important;
         }
     }
 }

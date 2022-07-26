@@ -1,10 +1,23 @@
 .card {
-    width: 7.5rem;
+    width: 7.4rem;
     background-color: $primary-colour;
     border: none;
+    margin: 0 auto;
 }
 
 @include media-breakpoint-up(md) {
+    .card {
+        width: 11.8rem;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .card {
+        width: 15rem;
+    }
+}
+
+@include media-breakpoint-up(xxl) {
     .card {
         width: 18rem;
     }

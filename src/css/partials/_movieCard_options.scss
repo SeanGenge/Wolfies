@@ -1,5 +1,5 @@
-.offcanvas {
-    --bs-offcanvas-height: 60vh;
+.offcanvas-lg {
+    --bs-offcanvas-height: 80vh;
     background-color: $primary-colour;
     color: $white;
     
@@ -12,4 +12,10 @@
 
 .offcanvas-img {
     border-radius: 10px;
+}
+
+@include media-breakpoint-up(lg) {
+    .offcanvas-lg {
+        display: none;
+    }
 }
