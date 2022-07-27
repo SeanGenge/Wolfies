@@ -1,6 +1,4 @@
 .navbar {
-    //background-color: $primary-colour;
-    
     .navbar-brand {
         color: $secondary-colour;
     }
@@ -8,4 +6,14 @@
 
 .navbar-background {
     background-color: rgba($black, 0.98);
+}
+
+@include media-breakpoint-up(xxl) {
+    .navbar {
+        padding: 0 70px;
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+    }
 }

@@ -19,6 +19,12 @@
 
 @include media-breakpoint-up(xxl) {
     .card {
-        width: 18rem;
+        width: 16rem;
+        transition: box-shadow .5s, transform .2s;
+    }
+    
+    .card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 0 10px $secondary-colour;
     }
 }

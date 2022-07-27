@@ -12,6 +12,10 @@ $modal-content-bg: red;
         background-color: $primary-colour;
         color: $white;
         
+        img {
+            border-radius: 10px;
+        }
+        
         .movie-info {
             margin: 15px;
             

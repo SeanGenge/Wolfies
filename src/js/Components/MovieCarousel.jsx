@@ -43,7 +43,7 @@ class MovieCarousel extends React.Component {
 		return (
             <>
                 <div className="swiper-container">
-                    <h2 className="carousel-heading mb-1">{this.props.heading}</h2>
+                    <h2 className="carousel-heading">{this.props.heading}</h2>
                     <Swiper
                         navigation={true}
                         modules={[Navigation]}
