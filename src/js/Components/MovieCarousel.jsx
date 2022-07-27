@@ -70,7 +70,7 @@ class MovieCarousel extends React.Component {
                                 slidesPerGroup: 5
                             },
                             1600: { // Desktop
-                                slidesPerView: 6,
+                                slidesPerView: 5,
                                 slidesPerGroup: 5
                             }
                         }}>

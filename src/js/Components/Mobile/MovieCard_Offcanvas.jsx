@@ -53,7 +53,7 @@ class MovieCard_Offcanvas extends React.Component {
                         <h5 className="offcanvas-title" id="offcanvasBottomLabel">{this.state.movie?.title ?? ''}</h5>
                         <button type="button" className="btn-close btn-close-white" aria-label="Close" onClick={this.hideInfo}></button>
                     </div>
-                    <div className="offcanvas__extra-info ps-3 pb-2">
+                    <div className="offcanvas-lg__extra-info ps-3 pb-2">
                         <span className="me-1">{this.convertDate(this.state.movie.release_date)}</span>
                         <span className="ms-1">{this.state.movie.media_type == "tv" ? "series" : "movie"}</span>
                     </div>

@@ -10,18 +10,24 @@
     padding: 15px 0 10px 5px;
 }
 
-@include media-breakpoint-up(xxl) {
+@include media-breakpoint-up(lg) {
     .swiper {
         padding: 10px;
     }
     
-    .carousel-heading {
-        font-size: 1.75rem;
-        padding: 15px 0 0 30px;
+    .modal-body {
+        flex-wrap: wrap;
     }
     
+    .carousel-heading {
+        font-size: 1.75rem;
+        padding: 15px 0 0 50px;
+    }
+}
+
+@include media-breakpoint-up(xxl) {
     .swiper-container {
-        width: 95%;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 50px;

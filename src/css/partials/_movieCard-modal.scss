@@ -12,12 +12,14 @@ $modal-content-bg: red;
         background-color: $primary-colour;
         color: $white;
         
-        img {
+        .movie-img {
             border-radius: 10px;
+            width: 50%;
         }
         
         .movie-info {
-            margin: 15px;
+            padding: 15px;
+            width: 50%;
             
             .modal__extra-info {
                 font-size: 1rem;
