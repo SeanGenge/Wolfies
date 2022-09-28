@@ -2,12 +2,12 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'bootstrap';
-import Layout from "./src/js/pages/LayoutPage.jsx";
-import Home from "./src/js/pages/HomePage.jsx";
-import Search from "./src/js/pages/SearchPage.jsx";
-import NoPage from "./src/js/pages/NoPage.jsx";
+import Layout from "./pages/LayoutPage.jsx";
+import Home from "./pages/HomePage.jsx";
+import Search from "./pages/SearchPage.jsx";
+import NoPage from "./pages/NoPage.jsx";
 // Import css files
-import './src/css/main.scss';
+import '../css/main.scss';
 
 const rootContainer = document.getElementById("root");
 const root = createRoot(rootContainer);
