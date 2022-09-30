@@ -2,7 +2,6 @@ import React from "react";
 import * as mav from "../variables/movie-api-vars";
 import * as search from "../utility/search";
 import MovieCarousel from "../Components/MovieCarousel.jsx";
-import Footer from "../Components/footer.jsx";
 
 class Home extends React.Component {
     constructor(props) {
@@ -118,7 +117,6 @@ class Home extends React.Component {
 			<>
                 <MovieCarousel heading="Trending Daily" carouselNum={0} movies={this.state.trendingMovies} />
                 {genreMovieCarousels}
-                <Footer />
             </>
 		  );
 	}

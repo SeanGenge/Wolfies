@@ -20,7 +20,7 @@ class App extends React.Component {
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
-                        <Route path="search" element={<Search />} />
+                        <Route path="search/:searchTerm" element={<Search />} />
                         <Route path="*" element={<NoPage />} />
                     </Route>
                 </Routes>

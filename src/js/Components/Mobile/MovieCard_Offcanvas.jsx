@@ -26,7 +26,7 @@ class MovieCard_Offcanvas extends React.Component {
     }
     
     componentWillUnmount() {
-        document.removeEventListener("movieCard__clicked");
+		document.removeEventListener("movieCard__clicked", this.movieCard__clicked_callback);
     }
     
     convertDate(date) {

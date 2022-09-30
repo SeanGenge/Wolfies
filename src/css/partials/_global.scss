@@ -1,7 +1,21 @@
 body {
     background-image: linear-gradient(to top right, $black 90%, $gray);
+	background-repeat: no-repeat;
+	background-color: $black;
     user-select: none;
     font-family: 'Acme', sans-serif;
+}
+
+html, body {
+	height: 100%;
+}
+
+#root {
+	height: 100%;
+}
+
+.main-container {
+	min-height: 100%;
 }
 
 a {

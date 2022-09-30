@@ -47,3 +47,15 @@ export async function getMoviesByGenreIds(genreIds) {
         return data;
     });
 }
+
+export async function searchMovies(movie, page) {
+	// Returns a list of movies that match movie
+	// movie: The movie you want to search
+	// page: The page number you want to search
+	
+	return await fetch(`${gv.MOVIE_API_URL}/search/movie?query=${movie}&page=${page}&include_adult=false&language=en-US&api_key=${process.env.MOVIE_API_KEY}`)
+		.then(results => results.json())
+		.then(data => {
+			return data;
+		});
+}
