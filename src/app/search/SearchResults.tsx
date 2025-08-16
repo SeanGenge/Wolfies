@@ -38,12 +38,12 @@ export default function SearchResults() {
 				gutterBottom
 				sx={{ marginTop: "2rem", marginBottom: "2rem" }}
 			>
-				Search Results for "{searchParams.get("query") ?? ""}"
+				Search Results for &quot;{searchParams.get("query") ?? ""}&quot;
 			</Typography>
 
 			<Grid container spacing={1}>
 				{searchResults.map((result) => (
-					<Grid key={result.id} item sx={{ marginBottom: "2rem" }}>
+					<Grid key={result.id} sx={{ marginBottom: "2rem" }}>
 						<MovieCard movie={result} />
 					</Grid>
 				))}
