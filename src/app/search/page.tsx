@@ -1,45 +1,10 @@
-'use client';
+import { Suspense } from "react";
+import SearchResults from "./SearchResults";
 
-import { useState, useEffect } from "react";
-import { Movie } from "@/types/movie";
-import { Container, Grid, Typography } from "@mui/material";
-import MovieCard from "@/components/MovieCard";
-import { useSearchParams } from "next/navigation";
-
-export default function Search() {
-	const [searchResults, setSearchResults] = useState<Movie[]>([]);
-	const searchParams = useSearchParams();
-	
-	const getSearchResults = async () => {
-		const query = searchParams.get("query") ?? "";
-		
-		const searchResultsData = await fetch(`/api/search-multi?query=${encodeURIComponent(query)}`).then(res => res.json());
-		
-		// group results
-		const movies = searchResultsData.results.filter((r: Movie) => r.media_type === "movie");
-		const tvShows = searchResultsData.results.filter((r: Movie) => r.media_type === "tv");
-		const people = searchResultsData.results.filter((r: Movie) => r.media_type === "person");
-		
-		// Only display movies for now
-		setSearchResults(movies || [])
-	};
-	
-	useEffect(() => {
-		getSearchResults();
-	}, [searchParams]);
-	
+export default function SearchPage() {
 	return (
-		<Container maxWidth="xl">
-			<Typography variant="h4" gutterBottom sx={{marginTop: '2rem', marginBottom: '2rem'}}>
-				Search Results for &quot;{searchParams.get("query") ?? ""}&quot;
-			</Typography>
-			<Grid container spacing={1}>
-				{searchResults.map((result) => (
-					<Grid key={result.id} sx={{marginBottom: '2rem'}}>
-						<MovieCard movie={result} />
-					</Grid>
-				))}
-			</Grid>
-		</Container>
+		<Suspense fallback={<div>Loading search results...</div>}>
+			<SearchResults />
+		</Suspense>
 	);
 }
