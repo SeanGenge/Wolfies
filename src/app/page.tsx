@@ -1,10 +1,9 @@
 "use client";
 
-import Navigation from "@/components/Navigation";
 import { useEffect, useState } from 'react';
 import { Container } from "@mui/material";
 import { Movie } from "../types/movie";
-import MovieCarousel from "@/components/movieCarousel";
+import MovieCarousel from "@/components/MovieCarousel";
 
 export default function Home() {
 	const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
@@ -24,7 +23,6 @@ export default function Home() {
 	
 	return (
 		<>
-			<Navigation />
 			<Container maxWidth="xl">
 				<MovieCarousel title="Popular Now" movies={popularMovies} />
 				<MovieCarousel title="Upcoming" movies={upcomingMovies} />

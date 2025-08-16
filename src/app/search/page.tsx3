@@ -1,0 +1,104 @@
+import { NextPage } from "next";
+import { Box, Typography, Grid, Card, CardContent, CardMedia } from "@mui/material";
+
+interface TMDBResult {
+	id: number;
+	media_type: "movie" | "tv" | "person";
+	title?: string; // for movies
+	name?: string;  // for TV shows and people
+	poster_path?: string | null;
+	profile_path?: string | null;
+}
+
+interface TMDBResponse {
+	results: TMDBResult[];
+}
+
+async function fetchSearchResults(query: string): Promise<TMDBResponse> {
+	const res = await fetch(
+		`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(
+			query
+		)}&language=en-US&page=1`,
+		{
+			headers: {
+				Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
+				"Content-Type": "application/json",
+			},
+			cache: "no-store",
+		}
+	);
+
+	if (!res.ok) {
+		throw new Error("Failed to fetch search results");
+	}
+
+	return res.json();
+}
+
+const SearchPage: NextPage<{ searchParams: { query?: string } }> = async ({
+	searchParams,
+}) => {
+	const query = searchParams.query ?? "";
+	if (!query)
+		return <Typography sx={{ p: 3 }}>Enter a search term above</Typography>;
+
+	const data = await fetchSearchResults(query);
+
+	// group results
+	const movies = data.results.filter((r) => r.media_type === "movie");
+	const tvShows = data.results.filter((r) => r.media_type === "tv");
+	const people = data.results.filter((r) => r.media_type === "person");
+
+	const renderSection = (title: string, items: TMDBResult[]) => {
+		if (items.length === 0) return null;
+
+		return (
+			<Box sx={{ mt: 4 }}>
+				<Typography variant="h5" gutterBottom>
+					{title}
+				</Typography>
+				<Grid container spacing={2}>
+					{items.map((item) => (
+						<Grid item key={`${item.media_type}-${item.id}`} xs={6} sm={4} md={3}>
+							<Card>
+								<CardMedia
+									component="img"
+									height="300"
+									image={
+										item.poster_path || item.profile_path
+											? `https://image.tmdb.org/t/p/w500${item.poster_path ?? item.profile_path
+											}`
+											: "/placeholder.png"
+									}
+									alt={item.title || item.name || "Unknown"}
+								/>
+								<CardContent>
+									<Typography variant="h6" noWrap>
+										{item.title || item.name}
+									</Typography>
+									<Typography variant="body2" color="text.secondary">
+										{item.media_type.toUpperCase()}
+									</Typography>
+								</CardContent>
+							</Card>
+						</Grid>
+					))}
+				</Grid>
+			</Box>
+		);
+	};
+
+	return (
+		<Box sx={{ p: 3 }}>
+			<Typography variant="h4" gutterBottom>
+				Search Results for &quot;{query}&quot;
+			</Typography>
+
+			{renderSection("Movies", movies)}
+			{renderSection("TV Shows", tvShows)}
+			{renderSection("Actors", people)}
+		</Box>
+	);
+};
+
+export default SearchPage;

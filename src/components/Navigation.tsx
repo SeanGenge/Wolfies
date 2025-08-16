@@ -1,9 +1,23 @@
+'use client';
+
 import { AppBar, Toolbar, Typography, InputBase, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navigation() {
+	const [query, setQuery] = useState<string>("");
+	const router = useRouter();
+	
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === "Enter" && query.trim()) {
+			setQuery("");
+			router.push(`/search?query=${encodeURIComponent(query)}`)
+		}
+	};
+	
 	return (
 		<AppBar position="static" color="secondary" sx={{ paddingX: 2 }}>
 			<Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -36,6 +50,9 @@ export default function Navigation() {
 				>
 					<SearchIcon sx={{ mr: 1 }} />
 					<InputBase
+						value={query}
+						onKeyDown={handleKeyDown}
+						onChange={(e) => setQuery(e.target.value)}
 						placeholder="Search…"
 						sx={{ color: 'inherit', flex: 1 }}
 					/>

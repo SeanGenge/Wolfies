@@ -12,4 +12,5 @@ export type Movie = {
 	video: boolean;
 	popularity: number;
 	genre_ids: number[];
+	media_type: string;
 };
